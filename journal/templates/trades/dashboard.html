@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard · Trading Journal{% endblock %}
+{% block content %}
+<h2>Dashboard</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:1rem 0;">
+    <div style="border:1px solid #eee;border-radius:10px;padding:1rem;">
+        <div>Total trades</div>
+        <div style="font-size:2rem;font-weight:700;">{{ trade_count }}</div>
+    </div>
+    <div style="border:1px solid #eee;border-radius:10px;padding:1rem;">
+        <div>Realized trades</div>
+        <div style="font-size:2rem;font-weight:700;">{{ realized_count }}</div>
+    </div>
+    <div style="border:1px solid #eee;border-radius:10px;padding:1rem;">
+        <div>Total PnL</div>
+        <div style="font-size:2rem;font-weight:700;">{{ total_pnl }}</div>
+    </div>
+    <div style="border:1px solid #eee;border-radius:10px;padding:1rem;">
+        <div>Win rate</div>
+        <div style="font-size:2rem;font-weight:700;">{{ win_rate|floatformat:2 }}%</div>
+    </div>
+</div>
+<a class="btn" href="{% url 'trade-create' %}">New trade</a>
+<a class="btn secondary" href="{% url 'trade-list' %}">View all trades</a>
+{% endblock %}

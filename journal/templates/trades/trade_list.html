@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Trades · Trading Journal{% endblock %}
+{% block content %}
+<h2>Your trades</h2>
+<p><a class="btn" href="{% url 'trade-create' %}">New trade</a></p>
+<table>
+    <thead>
+        <tr>
+            <th>Symbol</th>
+            <th>Side</th>
+            <th>Qty</th>
+            <th>Entry</th>
+            <th>Exit</th>
+            <th>Entry time</th>
+            <th>Exit time</th>
+            <th>PnL</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for trade in object_list %}
+        <tr>
+            <td>{{ trade.symbol }}</td>
+            <td>{{ trade.side }}</td>
+            <td>{{ trade.quantity }}</td>
+            <td>{{ trade.entry_price }}</td>
+            <td>{{ trade.exit_price }}</td>
+            <td>{{ trade.entry_time }}</td>
+            <td>{{ trade.exit_time }}</td>
+            <td>{% if trade.pnl != None %}{{ trade.pnl }}{% else %}-{% endif %}</td>
+            <td>
+                <a href="{% url 'trade-update' trade.pk %}">Edit</a>
+                <a href="{% url 'trade-delete' trade.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="9">No trades yet.</td></tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

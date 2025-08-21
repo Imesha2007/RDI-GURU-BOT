@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}Trade · Trading Journal{% endblock %}
+{% block content %}
+<h2>{% if object %}Edit{% else %}New{% endif %} trade</h2>
+<form method="post" class="grid">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn" type="submit">Save</button>
+    <a class="btn secondary" href="{% url 'trade-list' %}">Cancel</a>
+ </form>
+{% endblock %}
